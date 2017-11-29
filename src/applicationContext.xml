@@ -12,7 +12,7 @@
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<context:annotation-config />
-	<context:component-scan base-package="com.auv.service" />
+	<context:component-scan base-package="com.viva4u.service" />
 	<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
 		<property name="url"> <value>jdbc:mysql://localhost:3306/yanxj</value></property>
@@ -21,7 +21,7 @@
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <!-- 别名的设置是为了在mapper。xml文件中使用， -->
-		<property name="typeAliasesPackage" value="com.auv.pojo" />
+		<property name="typeAliasesPackage" value="com.viva4u.pojo" />
 		<property name="dataSource" ref="datasource" />
 		<!-- 如果Mapper.xml与Mapper.class在同一个包下且同名，spring扫描Mapper.class的同时会自动扫描同名的Mapper.xml并装配到Mapper.class。
 			    如果Mapper.xml与Mapper.class不在同一个包下或者不同名，就必须使用配置mapperLocations指定mapper.xml的位置。
@@ -34,6 +34,6 @@
 	<!-- 创建mabatis映射器，basePackage声明了映射器接口文件的包路径。如果只配置了一个datasource,则映射器默认会自动装配，否则，需要sqlSessionFactoryBeanName属性进行配置 -->
 	<!-- 上述SqlSessionFactoryBean的mapperLocations属性所说的Mapper.class，即为此处创建的映射器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.auv.mapper"/>
+        <property name="basePackage" value="com.viva4u.mapper"/>
     </bean>
 </beans>

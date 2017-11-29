@@ -1,5 +1,2 @@
-<html>
-<body>
-<h2>你好!</h2>
-</body>
-</html>
+<%@page contentType="text/html; charset=UTF-8" %>
+<%@include file="header.jsp" %>
