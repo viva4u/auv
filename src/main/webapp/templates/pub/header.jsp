@@ -1,15 +1,12 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<!DOCTYPE HTML>
 <html>
 	<head>
-		
 		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-		<!-- <link type="text/css" href="/css/bootstrap.min.css">
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap.min.js"></script> -->
-		
+		<%-- <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+		<script src="<%=request.getContextPath() %>/js/jquery.min.js" charset="UTF-8"></script>
+		<script src="<%=request.getContextPath() %>/js/bootstrap.min.js" charset="UTF-8"></script> --%>
 		<style type="text/css">
 			body {
 				font-size: 12px;

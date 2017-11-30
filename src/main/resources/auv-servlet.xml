@@ -17,6 +17,8 @@
 
          <!-- 开启注解模式驱动 -->    
          <mvc:annotation-driven></mvc:annotation-driven>
+         <!-- 防止对请求进行响应时无法加载js/css/jpg/gif等静态资源 -->
+         <mvc:default-servlet-handler/>
          <!-- 扫包 ：其中@Controller就是通过这个组件被扫描到，并注册为bean-->
          <context:component-scan base-package="com.auv.controller" />
 		 <!-- 根据 Bean 中的 Spring MVC 注解对 Bean 进行加工处理，使这些 Bean 变成控制器并映射特定的 URL 请求 -->
