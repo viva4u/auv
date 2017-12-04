@@ -27,6 +27,16 @@
 	    <version>2.0</version>
 	    <scope>provided</scope>
 	</dependency>
+	<dependency>  
+        <groupId>jstl</groupId>  
+        <artifactId>jstl</artifactId>  
+        <version>1.1.2</version>  
+    </dependency>  
+    <dependency>  
+        <groupId>taglibs</groupId>  
+        <artifactId>standard</artifactId>  
+        <version>1.1.2</version>  
+    </dependency>  
 	<!-- mybatis -->
     <dependency>
 	    <groupId>org.mybatis</groupId>
@@ -49,6 +59,13 @@
 	    <artifactId>spring-context</artifactId>
 	    <version>3.2.16.RELEASE</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>3.2.16.RELEASE</version>
+	</dependency>
+	
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
@@ -107,8 +124,8 @@
 	       	<configuration>
 	           <!-- <url>http://localhost:8080/manager</url> -->            <!-- tomcat6部署管理路径 -->
 	           <url>http://localhost:8080/manager/text</url>                <!-- tomcat7部署管理路径 -->
-	           <username>admin</username>                                <!-- tomcat的管理员账号 -->
-	           <password>admin</password>
+	           <username>tomcat</username>                                <!-- tomcat的管理员账号 -->
+	           <password>tomcat</password>
 	           <port>8080</port>
 	           <path>/auv</path>                            <!-- 部署路径 -->
 	           <charset>UTF-8</charset>

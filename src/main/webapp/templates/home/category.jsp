@@ -8,21 +8,27 @@
 		<style type="text/css">
 			#category {
 				width: 100px;
-				border: 2px solid white;
 				height: 200px;
 				position: absolute;
 				top: 0px;
 				left: 0px;
 				background-color: #e2e2e2;
+				z-index: 1;
 			}
-			#product {
-				widows: 400px;
-				height: 200px;
-				margin-left:205px;
+			#product div.productitem {
+				width:200px;
+				height:200px;
+				margin-left:100px;
+				padding-left:20px;
+				background-color: white;
+				display: none;
 				position: absolute;
 				top: 0px;
 				left: 0px;
-				background-color: #e2e2e2;
+				z-index: 1;
+			}
+			div.cateitem a:hover {
+				text-decoration: none;
 			}
 		</style>
 		<script type="text/javascript">
@@ -36,17 +42,29 @@
 				$("div.cateitem").mouseenter(function name() {
 					var cid=$(this).attr("data-cid");
 					showcateitem(cid);
+					$(this).css("background-color","white");
 				});
 				$("div.cateitem").mouseleave(function name() {
 					var cid=$(this).attr("data-cid");
 					hidecateitem(cid);
+					$(this).css("background-color","#e2e2e2");
+				});
+				$("div.productitem").mouseenter(function name() {
+					var cid=$(this).attr("data-cid");
+					showcateitem(cid);
+					$("div.cateitem[data-cid="+cid+"]").css("background-color","white");
+				});
+				$("div.productitem").mouseleave(function name() {
+					var cid=$(this).attr("data-cid");
+					hidecateitem(cid);
+					$("div.cateitem[data-cid="+cid+"]").css("background-color","#e2e2e2");
 				});
 			});
 			
 		</script>
 	</head>
 	<body>
-		<div style="position: relative;top:0px;left:0px;">
+		<div class="content" style="position: relative;width:100%;height:500px; top:0px;left:0px;background-color: #f4f4f4;">
 			<div id="category">
 				<div class="cateitem" data-cid="1">
 					<span class="glyphicon glyphicon-link"></span>
@@ -58,12 +76,12 @@
 				</div>
 			</div>
 			<div id="product">
-				<div class="productitem" data-cid="1" style="display: none;">
+				<div class="productitem" data-cid="1">
 					<span>三星</span>
 					<span>苹果</span>
 					<span>小米</span>
 				</div>
-				<div class="productitem" data-cid="2" style="display: none;">
+				<div class="productitem" data-cid="2">
 					<span>沙发</span>
 					<span>茶几</span>
 					<span>书桌</span>
