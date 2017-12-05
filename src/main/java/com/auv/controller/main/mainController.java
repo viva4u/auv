@@ -16,8 +16,11 @@ public class mainController {
 	userBasicService userBasicService;
 	@RequestMapping("main")
 	public String pageQuery(Model model) {
+//		User user = userBasicService.getUserByIdService(1);
 		List<User> allUsers = userBasicService.getAllUserService();
+//		model.addAttribute("user", user);
 		model.addAttribute("allUsers",allUsers);
+		System.out.println(allUsers.size());
 		return "pageQuery";
 	}
 }

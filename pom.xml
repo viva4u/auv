@@ -27,21 +27,23 @@
 	    <version>2.0</version>
 	    <scope>provided</scope>
 	</dependency>
-	<dependency>  
-        <groupId>jstl</groupId>  
-        <artifactId>jstl</artifactId>  
-        <version>1.1.2</version>  
-    </dependency>  
-    <dependency>  
-        <groupId>taglibs</groupId>  
-        <artifactId>standard</artifactId>  
-        <version>1.1.2</version>  
-    </dependency>  
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.1.2</version>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/taglibs/standard -->
+	<dependency>
+	    <groupId>taglibs</groupId>
+	    <artifactId>standard</artifactId>
+	    <version>1.1.2</version>
+	</dependency>
 	<!-- mybatis -->
     <dependency>
 	    <groupId>org.mybatis</groupId>
 	    <artifactId>mybatis</artifactId>
-	    <version>3.4.1</version>
+	    <version>3.1.1</version>
 	</dependency>
 	<dependency>
 	    <groupId>org.mybatis</groupId>

@@ -5,7 +5,7 @@
 		SELECT *
 		FROM USER
 	</select>
-	<select id="getUserById" parameterType="int" resultType="User">
+	<select id="getUserById" parameterType="_int" resultType="User">
 		SELECT *
 		FROM USER
 		WHERE id=#{id};

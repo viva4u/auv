@@ -13,11 +13,13 @@
      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<context:annotation-config />
 	<context:component-scan base-package="com.auv.service" />
-	<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
-		<property name="url"> <value>jdbc:mysql://localhost:3306/yanxj</value></property>
-		<property name="username"><value>root</value></property>
-		<property name="password"><value>root</value></property>
+	<bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/yanxj"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="admin"></property>
+		<property name="initialSize" value="1" />
+		<property name="maxActive" value="5" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <!-- 别名的设置是为了在mapper。xml文件中使用， -->
@@ -34,6 +36,6 @@
 	<!-- 创建mybatis映射器，basePackage声明了映射器接口文件的包路径。如果只配置了一个datasource,则映射器默认会自动装配，否则，需要sqlSessionFactoryBeanName属性进行配置 -->
 	<!-- 上述SqlSessionFactoryBean的mapperLocations属性所说的Mapper.class，即为此处创建的映射器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.auv.mapper,com.auv.dao"/>
+        <property name="basePackage" value="com.auv.dao"/>
     </bean>
 </beans>
