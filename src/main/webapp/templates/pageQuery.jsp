@@ -34,14 +34,15 @@
 	</head>
 	<body>
 		<div class="mainSearch">
+			<input id="basepath" name="basepath" value="<%=request.getContextPath()%>">
 			<div class="search">
-				<input class="searchInput" type="text" placeholder="请输入姓名"/>
+				<input class="searchInput" type="text" name="name" placeholder="请输入姓名"/>
 			</div>
 			<div class="search">
-				<input class="searchInput" type="text" placeholder="请输入部门"/>
+				<input class="searchInput" type="text" name="age" placeholder="请输入年龄"/>
 			</div>
 			<div class="searchButton">
-				<input type="button" value="查询"/>
+				<button class="btn btn-default search" type="button">查询</button>
 			</div>
 		</div>
 		<div class="col-xs-12">

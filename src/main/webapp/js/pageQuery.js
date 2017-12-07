@@ -1,6 +1,8 @@
 $(function(){
+	var path = $("#basepath").val();
+	alert(path);
 	$("#pageQueryTable").bootstrapTable({
-		 url: '#',         			 //请求后台的URL（*）
+		 url: path+'/auv/main',         			 //请求后台的URL（*）
 		 method: 'post',                      //请求方式（*）
 //		 toolbar: '#toolbar',                //工具按钮用哪个容器
 //		 striped: true,                      //是否显示行间隔色
@@ -14,9 +16,9 @@ $(function(){
 	                  pageNumber: params.pageNumber,    
 	                  pageSize: params.pageSize
 	              }; 
-	              for(var key in searchArgs){
+	              /*for(var key in searchArgs){
 	                  param[key]=searchArgs[key]
-	              }  
+	              } */ 
 	              return param;                   
          }, 
 		 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
@@ -71,5 +73,4 @@ $(function(){
 			 return { classes: strclass };
 		 },//隔行变色
 	});
-	alert(123);
 })

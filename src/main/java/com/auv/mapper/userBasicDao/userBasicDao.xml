@@ -10,4 +10,22 @@
 		FROM USER
 		WHERE id=#{id};
 	</select>
+	<select id="pageQuery" parameterType="Map" resultType="User">
+		SELECT *
+		FROM USER
+		<if test="start!=null">
+			LIMIT #{start},#{size}
+		</if>
+	</select>
+	<!-- <select id="selectByFy" resultType="User" parameterType="Map">
+        SELECT *
+        FROM student
+        <if test="a!=null">
+            <where> 
+                <if test="name!=null and name!=''"> name=#{name}</if>
+                <if test="age!=null and age!=''">AND  age=#{age}</if>
+            </where>
+            LIMIT #{a},#{b}
+        </if>
+    </select> -->
 </mapper>
