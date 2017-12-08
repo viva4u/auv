@@ -1,6 +1,5 @@
 $(function(){
 	var path = $("#basepath").val();
-	alert(path);
 	$("#pageQueryTable").bootstrapTable({
 		 url: path+'/auv/main',         			 //请求后台的URL（*）
 		 method: 'post',                      //请求方式（*）
@@ -8,6 +7,7 @@ $(function(){
 //		 striped: true,                      //是否显示行间隔色
 //		 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		 pagination: true,                   //是否显示分页（*）
+		 locale:'zh-CN',					 //中文支持
 //		 sortable: false,                     //是否启用排序
 //		 sortOrder: "asc",                   //排序方式
 		 queryParamsType: '',					 //传递参数（*）
@@ -23,7 +23,7 @@ $(function(){
          }, 
 		 sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
 		 pageNumber: 1,                       //初始化加载第一页，默认第一页
-		 pageSize: 10,                       //每页的记录行数（*）
+		 pageSize: 5,                       //每页的记录行数（*）
 		 pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 //		 search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 		 contentType: "application/x-www-form-urlencoded",
@@ -39,14 +39,14 @@ $(function(){
 //		 detailView: false,                   //是否显示父子表
 		 columns: [
 		 {
-		     field: 'ID',
+		     field: 'id',
 		     title: 'ID'
 		 }, {
-		    field: 'Name',
+		    field: 'name',
 		    title: '名字'
 		 }, {
-		     field: 'Sex',
-		     title: '性别'
+		     field: 'age',
+		     title: '年龄'
 		 },{
 		     field: 'deptment',
 		     title: '部门'

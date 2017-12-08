@@ -34,7 +34,7 @@
 	</head>
 	<body>
 		<div class="mainSearch">
-			<input id="basepath" name="basepath" value="<%=request.getContextPath()%>">
+			<input id="basepath" name="basepath" value="<%=request.getContextPath()%>" style="display: none">
 			<div class="search">
 				<input class="searchInput" type="text" name="name" placeholder="请输入姓名"/>
 			</div>
