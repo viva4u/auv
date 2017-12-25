@@ -63,10 +63,12 @@ public class mainController extends HttpServlet{
 	@RequestMapping("uploadfile")
 	public String upLoadFile(HttpServletRequest request,Model model) throws IOException, FileUploadException {
 		String message = null;
-		String savePath = this.getServletContext().getRealPath("/upload");
+//		String savePath = "D:/_web/upload";
+		String savePath = request.getSession().getServletContext().getRealPath("/upload");
+		//System.out.println("savePath:"+savePath);
 		File file = new File(savePath);
 		if(!file.exists() && !file.isDirectory()) {
-			System.out.println("鐩綍涓嶅瓨鍦紝鍒涘缓鐩綍upload");
+			System.out.println("目录不存在，创建目录");
 			file.mkdirs();
 		}
 		//1銆佸垱寤轰竴涓狣iskFileItemFactory宸ュ巶
@@ -76,17 +78,19 @@ public class mainController extends HttpServlet{
 		upload.setHeaderEncoding("UTF-8");
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			return "";
-		};
+		}
 		List<FileItem> items = upload.parseRequest(request);
 		for(FileItem item:items) {
 			if(item.isFormField()) {
 				
 			}else {
-				String filename = item.getFieldName();
+				String filename = item.getName();
 				if(filename==null || filename.trim().equals("")) {
 					continue;
 				}
+				System.out.println("filename:"+filename);
 				filename = filename.substring(filename.lastIndexOf("\\")+1);
+				System.out.println("filename:"+filename);
 				FileOutputStream outputStream = new FileOutputStream(savePath+"\\"+filename);
 				InputStream inputStream = item.getInputStream();
 				byte buffer[] = new byte[1024];
@@ -97,7 +101,7 @@ public class mainController extends HttpServlet{
 				inputStream.close();
 				outputStream.close();
 				item.delete();
-				message = "涓婁紶鏂囦欢鎴愬姛";
+				message = "上传成功";
 			}
 		}
 		model.addAttribute("message",message);
