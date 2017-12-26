@@ -7,28 +7,12 @@
 	<head>
 	</head>
 	<body>
-		<%-- <c:forEach var="me" items="filesmap">
-			<c:url value="/auv/download" var="downurl">
-			<c:url value="/auv/DownLoadServlet" var="downurl">
-				<c:param name="filename" value="${me.key}"></c:param>
-				<c:param name="filename" value="${me.key}"></c:param>
-			</c:url>
-			${me.value}<a href="${downurl }">下载</a>
-			<br>
-		</c:forEach> --%>
-		<c:forEach var="file" items="filesmap">
-			<c:url value="/auv/download" var="downurl">
+		<c:forEach var="file" items="${filesmap }">
+			<c:url value="/download" var="downurl">
 				<c:param name="filename" value="${file.key}"></c:param>
 			</c:url>
 			${file.value}<a href="${downurl}">下载</a>
 			<br>
 		</c:forEach>
-		<%-- <c:forEach var="me" items="${filesmap}">
-			<c:url value="/auv/DownLoadServlet" var="downurl">
-				<c:param name="filename" value="${me.key}"></c:param>
-			</c:url>
-			${me.value}<a href="${downurl}">下载</a>
-			<br/>
-		</c:forEach> --%>
 	</body>
 </html>

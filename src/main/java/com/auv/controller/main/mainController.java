@@ -1,15 +1,20 @@
 package com.auv.controller.main;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -65,7 +70,7 @@ public class mainController extends HttpServlet{
 	public String upLoadFile(HttpServletRequest request,Model model) throws IOException, FileUploadException {
 		String message = null;
 //		String savePath = "D:/_web/upload";
-		String savePath = request.getSession().getServletContext().getRealPath("/upload");
+		String savePath = request.getServletContext().getRealPath("/WEB-INF//upload");
 		//System.out.println("savePath:"+savePath);
 		File file = new File(savePath);
 		if(!file.exists() && !file.isDirectory()) {
@@ -119,6 +124,8 @@ public class mainController extends HttpServlet{
 	public void listFile(File file,Map<String, String> map) {
 		if(file.isFile()) {
 			String fileName = file.getName().substring(file.getName().indexOf("\\")+1);
+			System.out.println("key:"+file.getName());
+			System.out.println("value:"+fileName);
 			map.put(file.getName(), fileName);
 		}else {
 			File[] files = file.listFiles();
@@ -129,11 +136,36 @@ public class mainController extends HttpServlet{
 	}
 	@RequestMapping("downloadFiles")
 	public String downloadfiles(HttpServletRequest request,Model model) {
-		String savePath = request.getServletContext().getRealPath("/upload");
+		String savePath = request.getServletContext().getRealPath("/WEB-INF/upload");
 		File file = new File(savePath);
 		Map<String, String> filesmap = new HashMap<String, String>();
 		listFile(file, filesmap);
 		model.addAttribute("filesmap", filesmap);
 		return "downloadfiles";
+	}
+	@RequestMapping("download")
+	public void download(HttpServletRequest request,HttpServletResponse response,Model model) throws IOException {
+		String filename = request.getParameter("filename");
+		String savePath = request.getServletContext().getRealPath("/WEB-INF/upload");
+		//需要增加如下语句，防止中文乱码
+		filename = new String(filename.getBytes("iso8859-1"),"UTF-8");
+		String realname = filename;
+		filename = savePath+"\\"+filename;
+		File file = new File(filename);
+		if(!file.exists()) {
+			model.addAttribute("message", "文件已被删除");
+			System.out.println("文件已被删除");
+		}
+		//设置响应头，控制浏览器下载该文件
+		response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(realname, "UTF-8"));
+		FileInputStream fileInputStream = new FileInputStream(filename);
+		OutputStream outputStream = response.getOutputStream();
+		byte buffer[] =new byte[1024];
+		int len = 0;
+		while((len = fileInputStream.read(buffer))>0) {
+			outputStream.write(buffer, 0, len);
+		}
+		fileInputStream.close();
+		outputStream.close();
 	}
 }
