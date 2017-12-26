@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.auv.service.serviceInterface.userBasicService;
 
@@ -105,6 +106,34 @@ public class mainController extends HttpServlet{
 			}
 		}
 		model.addAttribute("message",message);
-		return "uploadfinish";
+//		attributes.addAttribute("message", message);
+//		return "uploadfinish";
+		return "redirect:/downloadFiles";
+	}
+	@RequestMapping("uploadfinished")
+	public String uploadfinished(RedirectAttributes attributes) {
+//		attributes.addAttribute("message", message);
+		return "uploadfinished";
+	}
+	//不论file为文件还是目录，获取file下面的所有文件
+	public void listFile(File file,Map<String, String> map) {
+		if(file.isFile()) {
+			String fileName = file.getName().substring(file.getName().indexOf("\\")+1);
+			map.put(file.getName(), fileName);
+		}else {
+			File[] files = file.listFiles();
+			for(File fileitem : files) {
+				listFile(fileitem, map);
+			}
+		}
+	}
+	@RequestMapping("downloadFiles")
+	public String downloadfiles(HttpServletRequest request,Model model) {
+		String savePath = request.getServletContext().getRealPath("/upload");
+		File file = new File(savePath);
+		Map<String, String> filesmap = new HashMap<String, String>();
+		listFile(file, filesmap);
+		model.addAttribute("filesmap", filesmap);
+		return "downloadfiles";
 	}
 }
